@@ -18,13 +18,13 @@ describe("stock limits", () => {
 describe("cancellation", () => {
   it("restores stock on cancel", () => {
     let s = placeOrder(seed(), "p12", 5, "b");
-    s = setStatus(s, s.orders[0].id, "cancelled");
+    s = setStatus(s, s.orders[0]!.id, "cancelled");
     expect(s.products.find((p) => p.id === "p12")!.quantity).toBe(20);
-    expect(s.orders[0].status).toBe("cancelled");
+    expect(s.orders[0]!.status).toBe("cancelled");
   });
   it("cannot cancel a completed order", () => {
     let s = placeOrder(seed(), "p12", 5, "b");
-    const id = s.orders[0].id;
+    const id = s.orders[0]!.id;
     s = setStatus(setStatus(setStatus(s, id, "accepted"), id, "ready"), id, "completed");
     expect(() => setStatus(s, id, "cancelled")).toThrow();
   });

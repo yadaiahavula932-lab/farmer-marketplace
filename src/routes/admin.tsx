@@ -26,7 +26,7 @@ function Admin() {
       {app.role !== "admin" && <p className="text-destructive mb-4">Switch to the Admin role to moderate listings.</p>}
       <div className="space-y-2">
         {app.products.map((p) => {
-          const dup = counts[p.name.toLowerCase().trim()] > 1;
+          const dup = (counts[p.name.toLowerCase().trim()] ?? 0) > 1;
           return (
             <div key={p.id} className="panel flex flex-wrap items-center gap-3">
               <span className="text-2xl">{p.emoji}</span>

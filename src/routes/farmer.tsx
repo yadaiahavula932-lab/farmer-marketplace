@@ -32,7 +32,7 @@ function Farmer() {
   const add = (e: React.FormEvent) => {
     e.preventDefault();
     const quantity = Number(form.quantity), price = Number(form.price);
-    if (!form.name.trim() || quantity < 0 || price <= 0) return toast.error("Enter a name, stock and a price above 0");
+    if (!form.name.trim() || quantity < 0 || price <= 0) { toast.error("Enter a name, stock and a price above 0"); return; }
     const p: Product = { ...form, id: Math.random().toString(36).slice(2, 9), farmerId: me.id, quantity, price, fulfilment: form.fulfilment as Product["fulfilment"] };
     update((s) => ({ ...s, products: [p, ...s.products] }));
     setForm(blank); toast.success("Listing published");
