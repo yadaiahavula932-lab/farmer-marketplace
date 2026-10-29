@@ -33,7 +33,7 @@ function Market() {
     !p.hidden &&
     p.name.toLowerCase().includes(q.toLowerCase()) &&
     (!cat || p.category === cat) &&
-    (!loc || fById[p.farmerId].location === loc) &&
+    (!loc || fById[p.farmerId]?.location === loc) &&
     (!max || p.price <= +max) &&
     (!inStock || p.quantity > 0)
   ), [app.products, q, cat, loc, max, inStock]);
@@ -75,7 +75,7 @@ function Market() {
                   <h3 className="font-semibold text-lg">{p.name}</h3>
                   <span className="text-primary font-bold whitespace-nowrap">{inr(p.price)} <span className="text-xs text-muted-foreground font-normal">/ {p.unit}</span></span>
                 </div>
-                <p className="text-sm text-muted-foreground">{f.farm} · {f.location}</p>
+                <p className="text-sm text-muted-foreground">{f?.farm} · {f?.location}</p>
                 <div className="flex flex-wrap gap-2 text-xs">
                   <span className="chip">{p.category}</span>
                   <span className="chip">{p.quantity} {p.unit} left</span>
